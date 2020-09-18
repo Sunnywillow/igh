@@ -296,23 +296,7 @@
             </div>
         </div>
         <div class="searchBox default_searchBox">
-            <div class="searchInput" style="margin-top: 15px;">
-                <div
-                    class="input-with-select ivu-input-wrapper ivu-input-wrapper-default ivu-input-type ivu-input-group ivu-input-group-default ivu-input-group-with-append ivu-input-hide-icon">
-                    <!---->
-                    <div class="ivu-input-inner-container">
-                        <!----> <i
-                            class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
-                        <input autocomplete="off" spellcheck="false" type="text" placeholder="人员姓名/设备号/手机号/身份证号"
-                            class="ivu-input ivu-input-default"></div>
-                    <div class="ivu-input-group-append">
-                        <div style="width: 40px; cursor: pointer;"><i class="ivu-icon ivu-icon-ios-search"
-                                style="color: rgb(255, 255, 255); font-size: 26px; font-weight: 600;"></i></div>
-                    </div>
-                </div>
-                <div class="clearDataicon"><i class="ivu-icon ivu-icon-md-close"
-                        style="font-size: 23px; color: rgb(255, 255, 255);"></i></div>
-            </div>
+
             <div class="search-content" style="padding-top: 40px;">
                 <div class="ivu-spin ivu-spin-large ivu-spin-fix ivu-spin-show-text" style="display: none;">
                     <div class="ivu-spin-main"><span class="ivu-spin-dot"></span>
@@ -326,16 +310,17 @@
                     <ul class="packUp"
                         style="padding-right: 0px; height: 40px; border-bottom: 1px solid rgba(90, 183, 242, 0.39);">
                         <li class="select-show-type">人员</li>
-                        <li class="">告警</li>
+
                     </ul>
                     <div class="map-userComponent">
-                        <div class="selectBox"><select size="mini" placeholder="班组" @change="handleChange($event)"
-                                v-model="foo">
+                        <div class="selectBox">
+                            <select size="mini" placeholder="班组" @change="handleChange1($event)" v-model="group">
                                 <option value="">全部</option>
                                 <option label="钢筋工班组" value="钢筋工班组">钢筋工班组</option>
                                 <option label="木工班组" value="木工班组">木工班组</option>
                                 <option label="混凝土工班组" value="混凝土工班组">混凝土工班组</option>
-                            </select> <select size="mini" placeholder="工种">
+                            </select>
+                            <select size="mini" placeholder="工种" @change="handleChange1($event)" v-model="work">
                                 <option value="">全部</option>
                                 <option label="车工" value="车工">车工</option>
                                 <option label="焊工" value="焊工">焊工</option>
@@ -415,11 +400,13 @@
                                 <option label="车队队长" value="车队队长">车队队长</option>
                                 <option label="车队班长" value="车队班长">车队班长</option>
                                 <option label="罐车驾驶员" value="罐车驾驶员">罐车驾驶员</option>
-                            </select> <select size="mini" placeholder="状态">
+                            </select>
+                            <select size="mini" placeholder="状态" @change="handleChange1($event)" v-model="state">
                                 <option value="">全部</option>
                                 <option value="场内">场内</option>
                                 <option value="场外">场外</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="listTitle"><span class="index">序号</span> <span class="employeeName">姓名</span>
                             <span class="team">所属班组</span> <span class="gender">工种</span></div>
 
@@ -430,10 +417,15 @@
                                     class="index">{{index+1}}</span> <span class="employeeName">{{i.name}}</span>
                                 <span class="team">{{i.teamname}}</span> <span class="gender">{{i.workname}}</span>
                             </div>
-                            <p class="noDataClass">暂无数据</p>
+
                         </div>
                     </div>
+                    <button type="button" class="showAllButton ivu-btn ivu-btn-default ivu-btn-small"
+                                    v-on:click="showpath">
 
+
+                                    <!---->
+                                    <!----> <span>完整轨迹</span></button>
                     <div class="showMore" style="display: none;"><span>更多</span> <i
                             class="type-more-icon ivu-icon ivu-icon-ios-arrow-down"></i></div>
                 </div>
@@ -620,12 +612,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="showAllButton ivu-btn ivu-btn-default ivu-btn-small"
+                                <!-- <button type="button" class="showAllButton ivu-btn ivu-btn-default ivu-btn-small"
                                     v-on:click="showpath">
 
 
-                                    <!---->
-                                    <!----> <span>完整轨迹</span></button></p>
+
+                                <span>完整轨迹</span>
+                                </button> -->
+                                </p>
                                 <div class="speed">
                                     <div title="减速" class="reduce"></div>
                                     <div size="mini" title="暂停" class="startlocus" style="display: none;"></div>
@@ -688,132 +682,302 @@
             el: '#electronicSandTable',
             data: {
                 name: 'Vue.js',
-                foo: '',
-
+                // 三个筛选框绑定数据
+                group: '',
+                work: '',
+                state: '',
+                // 从后端接收到的员工列表数据
                 emplist: [
-                    {
-                        name: '刘阳',
-                        teamname: '钢筋工班组',
-                        workname: '工种1'
-                    },
-                    {
-                        name: '吴',
-                        teamname: '木工班组',
-                        workname: '工种1'
-                    },
-                    {
-                        name: '刘阳2',
-                        teamname: '钢筋工班组',
-                        workname: '工种1'
-                    },
-                    {
-                        name: '刘阳3',
-                        teamname: '混凝土工班组',
-                        workname: '工种1'
-                    },
-                    {
-                        name: '刘阳4',
-                        teamname: '钢筋工班组',
-                        workname: '工种1'
-                    },
-                    {
-                        name: '刘阳5',
-                        teamname: '木工班组',
-                        workname: '工种1'
-                    },
-                    {
-                        name: '刘阳6',
-                        teamname: '混凝土工班组',
-                        workname: '工种1'
-                    },
                 ],
-                newEmpList: []
+                yuanEmplist: [],
+
+                map: {},
+                lineArr: [],
+                marker:{}
+
             },
             mounted() {
                 this.initMap();
+                this.getdata();
             },
             methods: {
-                handleChange: function (e) {
-                    console.log(e.target.value);
-                    selectedTeamName = e.target.value;
-                    this.emplist = [];
-                    var selectedemplist = [
+                getdata: function () {
+                    var that = this;
+
+                    // $.ajax({
+                    //     url: 'http://127.0.0.1:5001/api/test',
+                    //     type: 'GET',
+                    //     dataType: 'json',
+                    //     data: {},
+                    //     success: function (data) {
+                    //         console.log(data);
+
+                    //         for (var i = 0; i < data.length - 1; i++) {
+
+                    //             that.emplist.push(data[i]);
+                    //         }
+
+                    //     },
+                    //     error: function () {
+                    //     }
+                    // });
+                    this.yuanEmplist = [
                         {
                             name: '刘阳',
                             teamname: '钢筋工班组',
-                            workname: '工种1'
+                            workname: '车工',
+                            statename: '场外'
                         },
                         {
                             name: '吴',
                             teamname: '木工班组',
-                            workname: '工种1'
+                            workname: '焊工',
+                            statename: '场外'
                         },
                         {
                             name: '刘阳2',
                             teamname: '钢筋工班组',
-                            workname: '工种1'
+                            workname: '监工',
+                            statename: '场内'
                         },
                         {
                             name: '刘阳3',
                             teamname: '混凝土工班组',
-                            workname: '工种1'
+                            workname: '其他',
+                            statename: '场内'
                         },
                         {
                             name: '刘阳4',
                             teamname: '钢筋工班组',
-                            workname: '工种1'
+                            workname: '小工',
+                            statename: '场外'
                         },
                         {
                             name: '刘阳5',
                             teamname: '木工班组',
-                            workname: '工种1'
+                            workname: '技工',
+                            statename: '场内'
                         },
                         {
                             name: '刘阳6',
                             teamname: '混凝土工班组',
-                            workname: '工种1'
+                            workname: '质量员',
+                            statename: '场外'
                         },
-                    ];
-                    if (selectedTeamName == '') {
-                        this.emplist = selectedemplist;
-                    } else {
-                        for (let i = 0; i < selectedemplist.length - 1; i++) {
-                            const element = selectedemplist[i];
+                    ]
+                    // 模拟数据
+                    that.emplist = this.yuanEmplist;
+                },
+                // 班组
+                handleChange1: function (e) {
+                    this.emplist = [];
+                    let _this = this;
+                    this.yuanEmplist.forEach((item, index) => {
+                        if (_this.group == '' || _this.group == item.teamname) {
 
-
-                            if (selectedTeamName == element.teamname) {
-                                this.emplist.push(element);
-
-                                console.log(this.emplist);
+                            if (_this.work == '' || _this.work == item.workname) {
+                                if (_this.state == '' || _this.state == item.statename) {
+                                    _this.emplist.push(item)
+                                }
                             }
 
-
                         }
-                    }
+                    })
+
+
+
+                    // console.log(e.target.value);
+                    // selectedTeamName = e.target.value;
+                    // this.emplist = [];
+
+
+                    // var selectedemplist = [
+                    //     {
+                    //         name: '刘阳',
+                    //         teamname: '钢筋工班组',
+                    //         workname: '车工',
+                    //         statename: '场外'
+                    //     },
+                    //     {
+                    //         name: '吴',
+                    //         teamname: '木工班组',
+                    //         workname: '焊工',
+                    //         statename: '场外'
+                    //     },
+                    //     {
+                    //         name: '刘阳2',
+                    //         teamname: '钢筋工班组',
+                    //         workname: '监工',
+                    //         statename: '场内'
+                    //     },
+                    //     {
+                    //         name: '刘阳3',
+                    //         teamname: '混凝土工班组',
+                    //         workname: '其他',
+                    //         statename: '场内'
+                    //     },
+                    //     {
+                    //         name: '刘阳4',
+                    //         teamname: '钢筋工班组',
+                    //         workname: '小工',
+                    //         statename: '场外'
+                    //     },
+                    //     {
+                    //         name: '刘阳5',
+                    //         teamname: '木工班组',
+                    //         workname: '技工',
+                    //         statename: '场内'
+                    //     },
+                    //     {
+                    //         name: '刘阳6',
+                    //         teamname: '混凝土工班组',
+                    //         workname: '质量员',
+                    //         statename: '场外'
+                    //     },
+                    // ];
+                    // if (selectedTeamName == '') {
+                    //     this.emplist = selectedemplist;
+                    // }
+                    // else {
+                    //     for (let i = 0; i < selectedemplist.length - 1; i++) {
+                    //         const element = selectedemplist[i];
+
+
+                    //         if (selectedTeamName == element.teamname) {
+                    //             this.emplist.push(element);
+
+                    //             console.log(this.emplist);
+                    //         }
+
+
+                    //     }
+                    // }
 
 
                 },
+                // 工种
+                // handleChange2: function (e) {
+                //     console.log(e.target.value);
+                //     selectedTeamName = e.target.value;
+                //     selected
+                //     this.emplist = [];
+
+
+                //     var selectedemplist = [
+                //         {
+                //             name: '刘阳',
+                //             teamname: '钢筋工班组',
+                //             workname: '车工',
+                //             statename: '场外'
+                //         },
+                //         {
+                //             name: '吴',
+                //             teamname: '木工班组',
+                //             workname: '焊工',
+                //             statename: '场外'
+                //         },
+                //         {
+                //             name: '刘阳2',
+                //             teamname: '钢筋工班组',
+                //             workname: '监工',
+                //             statename: '场内'
+                //         },
+                //         {
+                //             name: '刘阳3',
+                //             teamname: '混凝土工班组',
+                //             workname: '其他',
+                //             statename: '场内'
+                //         },
+                //         {
+                //             name: '刘阳4',
+                //             teamname: '钢筋工班组',
+                //             workname: '小工',
+                //             statename: '场外'
+                //         },
+                //         {
+                //             name: '刘阳5',
+                //             teamname: '木工班组',
+                //             workname: '技工',
+                //             statename: '场内'
+                //         },
+                //         {
+                //             name: '刘阳6',
+                //             teamname: '混凝土工班组',
+                //             workname: '质量员',
+                //             statename: '场外'
+                //         },
+                //     ];
+                //     if (this.group == '' || this.work == '') {
+                //         console.log(this.group);
+                //         this.emplist = selectedemplist;
+                //     }
+                //     else if (this.group != '' || this.work == '') {
+
+                //     }
+
+
+                //     else {
+                //         for (let i = 0; i < selectedemplist.length - 1; i++) {
+                //             const element = selectedemplist[i];
+
+
+                //             if (selectedTeamName == element.teamname) {
+                //                 this.emplist.push(element);
+
+                //                 console.log(this.emplist);
+                //             }
+
+
+                //         }
+                //     }
+
+
+                // },
+
                 showpath: function () {
+                    
                     alert('hello' + this.name + '!')
-                    marker.moveAlong(lineArr, 25000)
-                    map.setFitView();
+                    this.marker.moveAlong(this.lineArr, 25000)
+                    this.map.setFitView();
                 },
 
                 initMap() {
                     // 实例化地图,并设置中心点
-                    var marker, map = new AMap.Map("container", {
+                        // var map = this.map
+                        // var marker = this.marker 
+
+                        //轨迹回放功能
+                    // 坐标点集合
+                    var  lineArr = [
+                        [120.63520638241431, 31.435001399727474],
+                        [120.63520638241431, 31.445001399727474],
+                        [120.63520638241431, 31.455001399727474],
+                        [120.63520638241431, 31.465001399727474],
+                        [120.63520638241431, 31.475001399727474],
+                        [120.83520638241431, 31.485001399727474],
+                        [120.63520638241431, 31.495001399727474],
+                        [120.63520638241431, 31.505001399727474],
+                        [120.63520638241431, 31.515001399727474],
+                        [120.63520638241431, 31.525001399727474],
+                        [120.63520638241431, 31.535001399727474],
+                        [120.63520638241431, 31.545001399727474],
+                    ]
+                    this.lineArr = lineArr;
+                       var map = new AMap.Map("container", {
                         resizeEnable: true,
                         center: [120.63520638241431, 31.425001399727474],
                         zoom: 14
                     })
+                    this.map = map;
 
 
                     // 实例化点标记
-                    marker = new AMap.Marker({
+                    var marker = new AMap.Marker({
                         icon: './static/images/map/markers/positionIcon.png',
                         position: [120.63520638241431, 31.425001399727474],
                         offset: new AMap.Pixel(0, 0)
                     });
+                    this.marker = marker;
                     marker.setMap(map);
 
                     // 设置文本
@@ -885,25 +1049,10 @@
                     });
 
 
-                    //轨迹回放功能
-                    // 坐标点集合
-                    var marker2, lineArr = [
-                        [120.63520638241431, 31.435001399727474],
-                        [120.63520638241431, 31.445001399727474],
-                        [120.63520638241431, 31.455001399727474],
-                        [120.63520638241431, 31.465001399727474],
-                        [120.63520638241431, 31.475001399727474],
-                        [120.83520638241431, 31.485001399727474],
-                        [120.63520638241431, 31.495001399727474],
-                        [120.63520638241431, 31.505001399727474],
-                        [120.63520638241431, 31.515001399727474],
-                        [120.63520638241431, 31.525001399727474],
-                        [120.63520638241431, 31.535001399727474],
-                        [120.63520638241431, 31.545001399727474],
-                    ]
+                    
 
 
-                    marker2 = new AMap.Marker({
+                    marker = new AMap.Marker({
                         map: map,
                         position: [120.63520638241431, 31.435001399727474],
                         icon: "./images/employee_head_man.png",
@@ -941,8 +1090,6 @@
 
             }
         })
-
-
 
     </script>
 </body>
