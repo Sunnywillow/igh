@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<!-- saved from url=(0116)https://include.zolbon.com/map.html?projectId=317&token=F7B14C548432729001B1C8F6147F8081&userId=null&employeeId=3034 -->
+<html data-blockbyte-bs-uid="54155">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <title>项目地图</title>
+    <link rel="stylesheet" href="./项目地图_files/bagemap.css">
+    <link rel="stylesheet" href="./项目地图_files/MarkerCluster.Default.css">
+    <script src="./项目地图_files/bigemap.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/bm.markercluster-src.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/patternUtils.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/symbol.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/polyline_arrow.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/moveMarker.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/bm.geometryutil.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/togeojson.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/ezuikit.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/jquery.js.下载"></script>
+    <link rel="shortcut icon" href="https://include.zolbon.com/favicon.png">
+    <link href="./项目地图_files/map.a9e0a498176d82c3685e7833fafd434e.css" rel="stylesheet">
+    <style class="blockbyte-bs-style" data-name="content">
+        body>div#blockbyte-bs-indicator>div {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        body>iframe#blockbyte-bs-sidebar.blockbyte-bs-visible,
+        body>iframe#blockbyte-bs-overlay.blockbyte-bs-visible {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        body.blockbyte-bs-noscroll {
+            overflow: hidden !important
+        }
+
+        body>div#blockbyte-bs-indicator>div {
+            position: absolute;
+            transform: translate3d(-24px, 0, 0);
+            top: 0;
+            left: 0;
+            width: 24px !important;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 10px 10px 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 2
+        }
+
+        body>div#blockbyte-bs-indicator>div>span {
+            -webkit-mask: no-repeat center/24px;
+            -webkit-mask-image: url(chrome-extension://jdbnofccmhefkmjbkkdkfiicjkgofkdh/img/icon-bookmark.svg);
+            background-color: #ffffff;
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%
+        }
+
+        body>div#blockbyte-bs-indicator[data-pos='right'] {
+            left: auto;
+            right: 0
+        }
+
+        body>div#blockbyte-bs-indicator[data-pos='right']>div {
+            transform: translate3d(24px, 0, 0);
+            left: auto;
+            right: 0;
+            border-radius: 10px 0 0 10px
+        }
+
+        body>div#blockbyte-bs-indicator.blockbyte-bs-fullHeight>div {
+            border-radius: 0
+        }
+
+        body>div#blockbyte-bs-indicator.blockbyte-bs-hover>div {
+            transform: translate3d(0, 0, 0);
+            opacity: 1
+        }
+
+        body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb {
+            height: 100% !important;
+            top: 0 !important
+        }
+
+        body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb>div {
+            background: transparent
+        }
+
+        body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb>div>span {
+            -webkit-mask-position-y: 20px
+        }
+
+        body>iframe#blockbyte-bs-sidebar {
+            width: 350px;
+            max-width: none;
+            height: 0;
+            z-index: 2147483646;
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            speak: none;
+            border: none;
+            display: block !important;
+            transform: translate3d(-350px, 0, 0);
+            transition: width 0s 0.3s, height 0s 0.3s, opacity 0.3s, transform 0.3s
+        }
+
+        body>iframe#blockbyte-bs-sidebar[data-pos='right'] {
+            left: auto;
+            right: 0;
+            transform: translate3d(350px, 0, 0)
+        }
+
+        body>iframe#blockbyte-bs-sidebar.blockbyte-bs-visible {
+            width: calc(100% + 350px);
+            height: 100%;
+            transform: translate3d(0, 0, 0);
+            transition: opacity 0.3s, transform 0.3s
+        }
+
+        body>iframe#blockbyte-bs-sidebar.blockbyte-bs-hideMask {
+            background: none !important
+        }
+
+        body>iframe#blockbyte-bs-sidebar.blockbyte-bs-hideMask:not(.blockbyte-bs-hover) {
+            width: calc(350px + 50px)
+        }
+
+        body>iframe#blockbyte-bs-overlay {
+            width: 100%;
+            max-width: none;
+            height: 100%;
+            z-index: 2147483647;
+            border: none;
+            speak: none;
+            background: rgba(0, 0, 0, 0.5) !important;
+            transition: opacity 0.3s
+        }
+    </style>
+</head>
+
+<body class="">
+    <div id="electronicSandTable">
+        <div class="ivu-spin ivu-spin-large ivu-spin-fix ivu-spin-show-text" style="display: none;">
+            <div class="ivu-spin-main"><span class="ivu-spin-dot"></span>
+                <div class="ivu-spin-text"><i class="demo-spin-icon-load ivu-icon ivu-icon-ios-loading"
+                        style="font-size: 18px;"></i>
+                    <div>Loading</div>
+                </div>
+            </div>
+        </div>
+        <div id="bageMap"
+            class="default_bageMap bigemap-container bigemap-touch bigemap-fade-anim bigemap-grab bigemap-touch-drag bigemap-touch-zoom"
+            tabindex="0" style="">
+            <div class="bigemap-pane bigemap-map-pane" style="transform: translate3d(-216px, -67px, 0px);">
+                <div class="bigemap-pane bigemap-tile-pane">
+                    <div class="bigemap-layer " style="z-index: 1;">
+                        <div class="bigemap-tile-container bigemap-zoom-animated"
+                            style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"></div>
+                    </div>
+                    <div class="bigemap-layer " style="z-index: 1; opacity: 1;">
+                        <div class="bigemap-tile-container bigemap-zoom-animated"
+                            style="z-index: 18; transform: translate3d(899px, 273px, 0px) scale(0.25);"></div>
+                        <div class="bigemap-tile-container bigemap-zoom-animated"
+                            style="z-index: 20; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt=""
+                                role="presentation" src="./项目地图_files/106947.jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(674px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(1).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(930px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946.jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(674px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(1).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(930px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948.jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(674px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(1).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(930px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(2).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(418px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(3).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1186px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(2).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(418px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(3).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1186px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(2).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(418px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(3).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1186px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(4).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(162px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(5).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1442px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(4).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(162px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(5).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1442px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(4).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(162px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(5).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1442px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(6).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(-94px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(7).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1698px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(6).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(-94px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(7).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1698px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(6).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(-94px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(7).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1698px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945.jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(674px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(1).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(930px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(2).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(418px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(3).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1186px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(4).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(162px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(5).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1442px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(6).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(-94px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(7).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1698px, -179px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106947(8).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1954px, 333px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106946(8).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1954px, 77px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106948(8).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1954px, 589px, 0px); opacity: 1;"><img
+                                alt="" role="presentation" src="./项目地图_files/106945(8).jpg"
+                                class="bigemap-tile bigemap-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(1954px, -179px, 0px); opacity: 1;">
+                        </div>
+                    </div>
+                </div>
+                <div class="bigemap-pane bigemap-shadow-pane"></div>
+                <div class="bigemap-pane bigemap-overlay-pane"><svg pointer-events="none" class="bigemap-zoom-animated"
+                        width="2183" height="894" viewBox="34 -27 2183 894"
+                        style="transform: translate3d(34px, -27px, 0px);">
+                        <g>
+                            <path class="bigemap-interactive" stroke="#00FF1A" stroke-opacity="1" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round" fill="none"
+                                d="M1048 326L1464 563L1397 668L999 427z"></path>
+                            <path class="bigemap-interactive" stroke="#00FF1A" stroke-opacity="1" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round" fill="none" d="M0 0"></path>
+                        </g>
+                    </svg></div>
+                <div class="bigemap-pane bigemap-marker-pane"></div>
+                <div class="bigemap-pane bigemap-tooltip-pane">
+                    <div class="bigemap-tooltip bigemap-zoom-animated bigemap-tooltip-left"
+                        style="opacity: 0.9; transform: translate3d(1147px, 482px, 0px);">中恒数字科技</div>
+                    <div class="bigemap-tooltip bigemap-zoom-animated bigemap-tooltip-right"
+                        style="opacity: 0.9; transform: translate3d(-6490px, 62069px, 0px);">苏州湾壹号</div>
+                </div>
+                <div class="bigemap-pane bigemap-popup-pane"></div>
+                <div class="bigemap-proxy bigemap-zoom-animated"
+                    style="transform: translate3d(5.60424e+07px, 2.73785e+07px, 0px) scale(131072);"></div>
+            </div>
+            <div class="bigemap-control-container">
+                <div class="bigemap-top bigemap-left"></div>
+                <div class="bigemap-top bigemap-right"></div>
+                <div class="bigemap-bottom bigemap-left">
+                    <div class="bigemap-logo bigemap-logo-true bigemap-control"></div>
+                </div>
+                <div class="bigemap-bottom bigemap-right">
+                    <div class="bigemap-control-attribution bigemap-control"><a target="_blank"
+                            href="http://bigemap.com/">© Bigemap</a> | <a href="http://www.google.cn/maps"
+                            target="_blank">Google Maps</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="appBackground" style="background-image: url(&quot;/static/images/map/appBG/map.png&quot;);"></div>
+        <div class="topMessageBox">
+            <switch disabled="disabled"></switch>
+            <div class="mapTitle">
+                <div style="left: 0px;">中恒数字</div>
+            </div>
+            <div class="commentDate">施工日期</div>
+            <div class="nowTime2" style="display: none;"><span id="nowTime2">2020年9月17日 15:28:23</span></div>
+            <div class="nowTime" style=""><img src="./项目地图_files/clock.png" style="margin-right: 3%; width: 20px;">
+                <span id="nowTime">2020年9月17日 15:28:23</span></div>
+            <div class="tadayNumber" style="padding: 0px 3%;">
+                <p class="cudn">
+                    在线
+                    <span>0</span> 人
+                </p>
+                <p class="cudn">
+                    场内
+                    <span>0</span> 人
+                </p>
+            </div>
+            <!---->
+            <div class="environmentTitle" style="">场内员工</div>
+            <div class="environment">
+                <div class="ivu-carousel"><button type="button"
+                        class="left ivu-carousel-arrow ivu-carousel-arrow-hover"><i
+                            class="ivu-icon ivu-icon-ios-arrow-back"></i></button>
+                    <div class="ivu-carousel-list">
+                        <div class="ivu-carousel-track higher"
+                            style="width: 0px; transform: translate3d(-3272px, 0px, 0px); transition: transform 500ms ease 0s; visibility: visible;">
+                        </div>
+                        <div class="ivu-carousel-track"
+                            style="width: 0px; transform: translate3d(408px, 0px, 0px); transition: transform 500ms ease 0s; position: absolute;">
+                        </div>
+                    </div> <button type="button" class="right ivu-carousel-arrow ivu-carousel-arrow-hover"><i
+                            class="ivu-icon ivu-icon-ios-arrow-forward"></i></button>
+                    <ul class="ivu-carousel-dots ivu-carousel-dots-none"></ul>
+                </div>
+                <div class="wlarouselHeight" style="padding: 3% 0px; font-size: 18px; text-align: center;">暂无数据</div>
+            </div>
+            <div class="countDown" style="">
+                <p>
+                    安全施工
+                    <span>75</span> 天
+                </p>
+                <!---->
+                <p class="cudn">
+                    倒计时
+                    <span>1030</span> 天
+                </p>
+                <!---->
+            </div>
+            <div class="noChoseProject projectListBox" style="z-index: 1200;"><span
+                    style="font-size: 14px; vertical-align: middle; display: inline-block; width: 50px;">项目：</span>
+                <div id="customSelect_map" class="ivu-select ivu-select-single ivu-select-default"
+                    style="width: 120px;">
+                    <div class="">
+                        <div class="ivu-select-selection ivu-select-selection-mini"><input id="valueChange" type="text"
+                                placeholder="中恒数字" class="ivu-select-placeholder" style="display: none;"> <span
+                                class="ivu-select-placeholder ivu-select-selected-value undefined">中恒数字</span> <i
+                                class="ivu-select-arrow ivu-input-icon ivu-icon ivu-icon-ios-arrow-down"
+                                style="color: rgb(255, 255, 255);"></i></div>
+                    </div>
+                    <div class="ivu-select-dropdown select-dropdown" style="padding-left: 10px; display: none;">
+                        <div class="map_project_tree">
+                            <ul class="map_project_tree_ul">
+                                <li title="中恒数字"><span class="tree_arrow_span"><i
+                                            class="ivu-icon ivu-icon-md-arrow-dropdown"
+                                            style="font-size: 14px; transform: rotate(-90deg); display: none;"></i></span>
+                                    <span class="treeName selected" style="width: 140px;">中恒数字</span> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="refersh" style=""><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAYAAAAdHLWhAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDphZjMzNmNiNi0wYmU4LWQ4NDAtODhmMy0zOTFmYzAzNWFhZmEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDVEMEEzNjFDQzk1MTFFQTgzNUZFRUYxMjAxMjUzQjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDVEMEEzNjBDQzk1MTFFQTgzNUZFRUYxMjAxMjUzQjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YWYzMzZjYjYtMGJlOC1kODQwLTg4ZjMtMzkxZmMwMzVhYWZhIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOmFmMzM2Y2I2LTBiZTgtZDg0MC04OGYzLTM5MWZjMDM1YWFmYSIv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"
+                    alt="" class=""></div>
+        </div>
+        <div class="topMessageBox pj_topMessageBox" style="display: none;">
+            <!---->
+            <div class="tadayNumber">
+                <p class="cudn">
+                    在线
+                    <span>0</span> 人
+                </p>
+                <p class="cudn">
+                    场内
+                    <span>0</span> 人
+                </p>
+            </div>
+            <div class="refersh" style=""><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAYAAAAdHLWhAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDphZjMzNmNiNi0wYmU4LWQ4NDAtODhmMy0zOTFmYzAzNWFhZmEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDVEMEEzNjFDQzk1MTFFQTgzNUZFRUYxMjAxMjUzQjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDVEMEEzNjBDQzk1MTFFQTgzNUZFRUYxMjAxMjUzQjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YWYzMzZjYjYtMGJlOC1kODQwLTg4ZjMtMzkxZmMwMzVhYWZhIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOmFmMzM2Y2I2LTBiZTgtZDg0MC04OGYzLTM5MWZjMDM1YWFmYSIv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"
+                    alt="" class=""></div>
+        </div>
+        <div class="showPersonBox" style="display: none;">
+            <p class="showPersonBox_item widthHarf" style="">楼层定位</p>
+            <!---->
+            <p class="showPersonBox_item">
+                今日场内总人数
+                <span class="spanNumber">0</span> 人
+            </p>
+            <p class="showPersonBox_item">
+                今日室内人数
+                <span class="spanNumber">0</span> 人
+            </p>
+            <p class="showPersonBox_item">
+                今日室外人数
+                <span class="spanNumber">0</span> 人
+            </p>
+            <div class="refersh" style=""><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAYAAAAdHLWhAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDphZjMzNmNiNi0wYmU4LWQ4NDAtODhmMy0zOTFmYzAzNWFhZmEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDVEMEEzNjFDQzk1MTFFQTgzNUZFRUYxMjAxMjUzQjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDVEMEEzNjBDQzk1MTFFQTgzNUZFRUYxMjAxMjUzQjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YWYzMzZjYjYtMGJlOC1kODQwLTg4ZjMtMzkxZmMwMzVhYWZhIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOmFmMzM2Y2I2LTBiZTgtZDg0MC04OGYzLTM5MWZjMDM1YWFmYSIv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"
+                    alt="" class=""></div>
+        </div>
+        <div style="position: absolute; z-index: 20; bottom: 50px; right: 60px;">
+            <div style="padding: 2px 5px; cursor: pointer; background: rgb(255, 255, 255);">卫星</div>
+            <div style="padding: 2px 5px; cursor: pointer; background: rgb(255, 255, 255); margin-top: 10px;">电子</div>
+        </div>
+        <div class="map-switch-box default_switch_box" style="">
+            <div class="bageMapSwitch">
+                <div class="swicthDisabled" style=""></div>
+                <p><span>人员情况</span> <span tabindex="0" class="ivu-switch ivu-switch-checked ivu-switch-default"><input
+                            type="hidden" value="true"> <span class="ivu-switch-inner">
+                            <!----></span></span></p>
+                <p><span>告警信息</span> <span tabindex="0" class="ivu-switch ivu-switch-default"><input type="hidden"
+                            value="false"> <span class="ivu-switch-inner">
+                            <!----> </span></span></p>
+                <!---->
+            </div>
+        </div>
+        <div class="searchBox default_searchBox">
+            <div class="searchInput" style="margin-top: 15px;">
+                <div
+                    class="input-with-select ivu-input-wrapper ivu-input-wrapper-default ivu-input-type ivu-input-group ivu-input-group-default ivu-input-group-with-append ivu-input-hide-icon">
+                    <!---->
+                    <div class="ivu-input-inner-container">
+                        <!----> <i
+                            class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
+                        <input autocomplete="off" spellcheck="false" type="text" placeholder="人员姓名/设备号/手机号/身份证号"
+                            class="ivu-input ivu-input-default"></div>
+                    <div class="ivu-input-group-append" style="">
+                        <div style="width: 40px; cursor: pointer;"><i class="ivu-icon ivu-icon-ios-search"
+                                style="color: rgb(255, 255, 255); font-size: 26px; font-weight: 600;"></i></div>
+                    </div>
+                </div>
+                <div class="clearDataicon"><i class="ivu-icon ivu-icon-md-close"
+                        style="font-size: 23px; color: rgb(255, 255, 255);"></i></div>
+            </div>
+            <div class="search-content" style="padding-top: 40px;">
+                <div class="ivu-spin ivu-spin-large ivu-spin-fix ivu-spin-show-text" style="display: none;">
+                    <div class="ivu-spin-main"><span class="ivu-spin-dot"></span>
+                        <div class="ivu-spin-text"><i class="demo-spin-icon-load ivu-icon ivu-icon-ios-loading"
+                                style="font-size: 18px;"></i>
+                            <div>Loading</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bageMap-tabs">
+                    <ul class="packUp"
+                        style="padding-right: 0px; height: 40px; border-bottom: 1px solid rgba(90, 183, 242, 0.39);">
+                        <li class="select-show-type">人员</li>
+                        <li class="">告警</li>
+                    </ul>
+                    <div class="showMore" style="display: none;"><span>更多</span> <i
+                            class="type-more-icon ivu-icon ivu-icon-ios-arrow-down"></i></div>
+                </div>
+                <div class="map-goLsit" style="display: none;">
+                    <p><i class="ivu-icon ivu-icon-ios-undo"></i>
+                        返回对的搜索数据
+                    </p>
+                </div>
+                <div class="dataList">
+                    <div>
+                        <div class="map-userComponent">
+                            <div class="selectBox"><select size="mini" placeholder="班组">
+                                    <option value="">全部</option>
+                                    <option label="钢筋工班组" value="521">钢筋工班组</option>
+                                    <option label="木工班组" value="525">木工班组</option>
+                                    <option label="混凝土工班组" value="526">混凝土工班组</option>
+                                </select> <select size="mini" placeholder="工种">
+                                    <option value="">全部</option>
+                                    <option label="车工" value="1">车工</option>
+                                    <option label="焊工" value="2">焊工</option>
+                                    <option label="监工" value="3">监工</option>
+                                    <option label="其他" value="4">其他</option>
+                                    <option label="小工" value="5">小工</option>
+                                    <option label="普工" value="6">普工</option>
+                                    <option label="技工" value="7">技工</option>
+                                    <option label="质量员" value="8">质量员</option>
+                                    <option label="试验员" value="9">试验员</option>
+                                    <option label="安全员" value="10">安全员</option>
+                                    <option label="施工员" value="11">施工员</option>
+                                    <option label="机电员" value="12">机电员</option>
+                                    <option label="搬运工" value="13">搬运工</option>
+                                    <option label="测量员" value="14">测量员</option>
+                                    <option label="技术员" value="15">技术员</option>
+                                    <option label="材料员" value="16">材料员</option>
+                                    <option label="资料员" value="17">资料员</option>
+                                    <option label="预算员" value="18">预算员</option>
+                                    <option label="综合行政" value="19">综合行政</option>
+                                    <option label="项目经理" value="20">项目经理</option>
+                                    <option label="特殊作业" value="21">特殊作业</option>
+                                    <option label="同进同出" value="22">同进同出</option>
+                                    <option label="项目总工" value="23">项目总工</option>
+                                    <option label="施工负责人" value="25">施工负责人</option>
+                                    <option label="项目副书记" value="26">项目副书记</option>
+                                    <option label="项目商务经理" value="27">项目商务经理</option>
+                                    <option label="项目生产经理" value="28">项目生产经理</option>
+                                    <option label="项目安全总监" value="29">项目安全总监</option>
+                                    <option label="项目经理助理" value="30">项目经理助理</option>
+                                    <option label="项目执行经理" value="31">项目执行经理</option>
+                                    <option label="施工技术商务" value="32">施工技术商务</option>
+                                    <option label="项目质量总工兼副总工程师" value="33">项目质量总工兼副总工程师</option>
+                                    <option label="材料组长" value="34">材料组长</option>
+                                    <option label="机电组长" value="35">机电组长</option>
+                                    <option label="安装经理" value="36">安装经理</option>
+                                    <option label="技术总工" value="37">技术总工</option>
+                                    <option label="电工" value="38">电工</option>
+                                    <option label="木工" value="39">木工</option>
+                                    <option label="泥工" value="40">泥工</option>
+                                    <option label="砼工" value="41">砼工</option>
+                                    <option label="钢筋工" value="42">钢筋工</option>
+                                    <option label="架子工" value="43">架子工</option>
+                                    <option label="抹灰工" value="44">抹灰工</option>
+                                    <option label="油漆工" value="46">油漆工</option>
+                                    <option label="水电工" value="50">水电工</option>
+                                    <option label="杂工" value="51">杂工</option>
+                                    <option label="钢结构安装工" value="53">钢结构安装工</option>
+                                    <option label="塔吊操作员" value="56">塔吊操作员</option>
+                                    <option label="保安" value="57">保安</option>
+                                    <option label="现场负责人" value="68">现场负责人</option>
+                                    <option label="钢筋班组长" value="69">钢筋班组长</option>
+                                    <option label="现场管理" value="71">现场管理</option>
+                                    <option label="电工工长" value="72">电工工长</option>
+                                    <option label="电焊工" value="74">电焊工</option>
+                                    <option label="钻机工" value="76">钻机工</option>
+                                    <option label="吊车司机" value="77">吊车司机</option>
+                                    <option label="挖机司机" value="78">挖机司机</option>
+                                    <option label="演示人员" value="81">演示人员</option>
+                                    <option label="项目管理人员" value="82">项目管理人员</option>
+                                    <option label="装载机司机" value="83">装载机司机</option>
+                                    <option label="推土机司机" value="84">推土机司机</option>
+                                    <option label="压路机司机" value="85">压路机司机</option>
+                                    <option label="自卸车司机" value="86">自卸车司机</option>
+                                    <option label="水泥罐车司机" value="87">水泥罐车司机</option>
+                                    <option label="天泵操作员" value="88">天泵操作员</option>
+                                    <option label="地泵操作员" value="89">地泵操作员</option>
+                                    <option label="双头车驾驶员" value="90">双头车驾驶员</option>
+                                    <option label="挂车驾驶员" value="91">挂车驾驶员</option>
+                                    <option label="砂浆车驾驶员" value="92">砂浆车驾驶员</option>
+                                    <option label="叉车驾驶员" value="93">叉车驾驶员</option>
+                                    <option label="掘进工" value="94">掘进工</option>
+                                    <option label="掘进班长" value="95">掘进班长</option>
+                                    <option label="掘进队长" value="96">掘进队长</option>
+                                    <option label="机修工" value="97">机修工</option>
+                                    <option label="机修班长" value="98">机修班长</option>
+                                    <option label="车队队长" value="99">车队队长</option>
+                                    <option label="车队班长" value="100">车队班长</option>
+                                    <option label="罐车驾驶员" value="101">罐车驾驶员</option>
+                                </select> <select size="mini" placeholder="状态">
+                                    <option value="">全部</option>
+                                    <option value="1">场内</option>
+                                    <option value="0">场外</option>
+                                </select></div>
+                            <div class="listTitle"><span class="index">序号</span> <span class="employeeName">姓名</span>
+                                <span class="team">所属班组</span> <span class="gender">工种</span></div>
+                            <div class="userlist">
+                                <ul class="employeeTr"></ul>
+                                <p class="noDataClass">暂无数据</p>
+                            </div>
+                        </div>
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                    <div>
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                    <div>
+                        <!---->
+                        <!---->
+                    </div>
+                    <div>
+                        <!---->
+                        <!---->
+                    </div>
+                    <div>
+                        <!---->
+                        <!---->
+                    </div>
+                    <div>
+                        <!---->
+                        <!---->
+                    </div>
+                    <div>
+                        <!---->
+                        <!---->
+                    </div>
+                    <!---->
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./项目地图_files/manifest.d108aad36cad110c1b80.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/vendor.587616bc898c7d43a907.js.下载"></script>
+    <script type="text/javascript" src="./项目地图_files/map.1193237836781a69bd60.js.下载"></script>
+    <div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+        <div class="xl-chrome-ext-bar__logo"></div>
+
+        <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>
+        <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+    </div><iframe id="blockbyte-bs-sidebar" class="notranslate" aria-hidden="true" data-pos="left"
+        src="./项目地图_files/saved_resource.html"></iframe>
+    <div id="blockbyte-bs-indicator" class="blockbyte-bs-fullHeight" style="width: 1px; height: 100%; top: 0%;"></div>
+</body>
+<div style="all: initial;">
+    <div></div>
+</div>
+
+</html>
