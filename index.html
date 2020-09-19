@@ -421,11 +421,11 @@
                         </div>
                     </div>
                     <button type="button" class="showAllButton ivu-btn ivu-btn-default ivu-btn-small"
-                                    v-on:click="showpath">
+                        v-on:click="showpath">
 
 
-                                    <!---->
-                                    <!----> <span>完整轨迹</span></button>
+                        <!---->
+                        <!----> <span>完整轨迹</span></button>
                     <div class="showMore" style="display: none;"><span>更多</span> <i
                             class="type-more-icon ivu-icon ivu-icon-ios-arrow-down"></i></div>
                 </div>
@@ -681,11 +681,11 @@
         var app = new Vue({
             el: '#electronicSandTable',
             data: {
-                name: 'Vue.js',
                 // 三个筛选框绑定数据
                 group: '',
                 work: '',
                 state: '',
+                content: '',
                 // 从后端接收到的员工列表数据
                 emplist: [
                 ],
@@ -693,7 +693,8 @@
 
                 map: {},
                 lineArr: [],
-                marker:{}
+                marker: {},
+                passedPolyline: {}
 
             },
             mounted() {
@@ -721,6 +722,8 @@
                     //     error: function () {
                     //     }
                     // });
+
+                    // 模拟数据 将数据变为vue实例中的全局变量
                     this.yuanEmplist = [
                         {
                             name: '刘阳',
@@ -765,10 +768,11 @@
                             statename: '场外'
                         },
                     ]
-                    // 模拟数据
+
+                    // 1.将全局变量的值放入当前方法中
                     that.emplist = this.yuanEmplist;
                 },
-                // 班组
+                // 2.对拿到的新值进行处理
                 handleChange1: function (e) {
                     this.emplist = [];
                     let _this = this;
@@ -779,82 +783,84 @@
                                 if (_this.state == '' || _this.state == item.statename) {
                                     _this.emplist.push(item)
                                 }
+
                             }
-
                         }
-                    })
-
-
-
-                    // console.log(e.target.value);
-                    // selectedTeamName = e.target.value;
-                    // this.emplist = [];
-
-
-                    // var selectedemplist = [
-                    //     {
-                    //         name: '刘阳',
-                    //         teamname: '钢筋工班组',
-                    //         workname: '车工',
-                    //         statename: '场外'
-                    //     },
-                    //     {
-                    //         name: '吴',
-                    //         teamname: '木工班组',
-                    //         workname: '焊工',
-                    //         statename: '场外'
-                    //     },
-                    //     {
-                    //         name: '刘阳2',
-                    //         teamname: '钢筋工班组',
-                    //         workname: '监工',
-                    //         statename: '场内'
-                    //     },
-                    //     {
-                    //         name: '刘阳3',
-                    //         teamname: '混凝土工班组',
-                    //         workname: '其他',
-                    //         statename: '场内'
-                    //     },
-                    //     {
-                    //         name: '刘阳4',
-                    //         teamname: '钢筋工班组',
-                    //         workname: '小工',
-                    //         statename: '场外'
-                    //     },
-                    //     {
-                    //         name: '刘阳5',
-                    //         teamname: '木工班组',
-                    //         workname: '技工',
-                    //         statename: '场内'
-                    //     },
-                    //     {
-                    //         name: '刘阳6',
-                    //         teamname: '混凝土工班组',
-                    //         workname: '质量员',
-                    //         statename: '场外'
-                    //     },
-                    // ];
-                    // if (selectedTeamName == '') {
-                    //     this.emplist = selectedemplist;
-                    // }
-                    // else {
-                    //     for (let i = 0; i < selectedemplist.length - 1; i++) {
-                    //         const element = selectedemplist[i];
-
-
-                    //         if (selectedTeamName == element.teamname) {
-                    //             this.emplist.push(element);
-
-                    //             console.log(this.emplist);
-                    //         }
-
-
-                    //     }
-                    // }
-
-
+                    });
                 },
+
+
+
+
+
+                // console.log(e.target.value);
+                // selectedTeamName = e.target.value;
+                // this.emplist = [];
+
+
+                // var selectedemplist = [
+                //     {
+                //         name: '刘阳',
+                //         teamname: '钢筋工班组',
+                //         workname: '车工',
+                //         statename: '场外'
+                //     },
+                //     {
+                //         name: '吴',
+                //         teamname: '木工班组',
+                //         workname: '焊工',
+                //         statename: '场外'
+                //     },
+                //     {
+                //         name: '刘阳2',
+                //         teamname: '钢筋工班组',
+                //         workname: '监工',
+                //         statename: '场内'
+                //     },
+                //     {
+                //         name: '刘阳3',
+                //         teamname: '混凝土工班组',
+                //         workname: '其他',
+                //         statename: '场内'
+                //     },
+                //     {
+                //         name: '刘阳4',
+                //         teamname: '钢筋工班组',
+                //         workname: '小工',
+                //         statename: '场外'
+                //     },
+                //     {
+                //         name: '刘阳5',
+                //         teamname: '木工班组',
+                //         workname: '技工',
+                //         statename: '场内'
+                //     },
+                //     {
+                //         name: '刘阳6',
+                //         teamname: '混凝土工班组',
+                //         workname: '质量员',
+                //         statename: '场外'
+                //     },
+                // ];
+                // if (selectedTeamName == '') {
+                //     this.emplist = selectedemplist;
+                // }
+                // else {
+                //     for (let i = 0; i < selectedemplist.length - 1; i++) {
+                //         const element = selectedemplist[i];
+
+
+                //         if (selectedTeamName == element.teamname) {
+                //             this.emplist.push(element);
+
+                //             console.log(this.emplist);
+                //         }
+
+
+                //     }
+                // }
+
+
                 // 工种
                 // handleChange2: function (e) {
                 //     console.log(e.target.value);
@@ -934,22 +940,53 @@
 
                 // },
 
+                getSelectData: function() {
+
+                }
+                ,
+
                 showpath: function () {
-                    
-                    alert('hello' + this.name + '!')
+                    content = this.container;
+                    alert('hello!')
+                    // this.marker.setLabel({
+                    //     offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
+                    //     content: '<div style="display: none"><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="张军">张军</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">钢筋工班组</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
+                    //     direction: 'right' //设置文本标注方位
+                    // });
+
+                    this.marker.setLabel(null);
                     this.marker.moveAlong(this.lineArr, 25000)
                     this.map.setFitView();
+
+
+                    var passedPolyline = new AMap.Polyline({
+                        map: this.map,
+                        // path: lineArr,
+                        strokeColor: "#AF5",  //线颜色
+                        // strokeOpacity: 1,     //线透明度
+                        strokeWeight: 6,      //线宽
+                        // strokeStyle: "solid"  //线样式
+                    });
+                    this.passedPolyline = passedPolyline;
+
+
+                    this.marker.on('moving', function (e) {
+                        passedPolyline.setPath(e.passedPath);
+                    });
+
+
+
                 },
 
                 initMap() {
                     // 实例化地图,并设置中心点
-                        // var map = this.map
-                        // var marker = this.marker 
+                    // var map = this.map
+                    // var marker = this.marker 
 
-                        //轨迹回放功能
+                    //轨迹回放功能
                     // 坐标点集合
-                    var  lineArr = [
-                        [120.63520638241431, 31.435001399727474],
+                    var lineArr = [
+                        [120.63520638241431, 31.425001399727474],
                         [120.63520638241431, 31.445001399727474],
                         [120.63520638241431, 31.455001399727474],
                         [120.63520638241431, 31.465001399727474],
@@ -963,7 +1000,7 @@
                         [120.63520638241431, 31.545001399727474],
                     ]
                     this.lineArr = lineArr;
-                       var map = new AMap.Map("container", {
+                    var map = new AMap.Map("container", {
                         resizeEnable: true,
                         center: [120.63520638241431, 31.425001399727474],
                         zoom: 14
@@ -981,11 +1018,13 @@
                     marker.setMap(map);
 
                     // 设置文本
+                    var content = this.content;
                     marker.setLabel({
                         offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
                         content: '<div><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="张军">张军</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">钢筋工班组</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
                         direction: 'right' //设置文本标注方位
                     });
+         
 
 
                     var markerList = [
@@ -1049,7 +1088,7 @@
                     });
 
 
-                    
+
 
 
                     marker = new AMap.Marker({
@@ -1065,23 +1104,7 @@
 
 
 
-                    var passedPolyline = new AMap.Polyline({
-                        map: map,
-                        // path: lineArr,
-                        strokeColor: "#AF5",  //线颜色
-                        // strokeOpacity: 1,     //线透明度
-                        strokeWeight: 6,      //线宽
-                        // strokeStyle: "solid"  //线样式
-                    });
-
-
-
-                    marker.on('moving', function (e) {
-                        passedPolyline.setPath(e.passedPath);
-                    });
-
-
-                    map.setFitView();
+                    
 
                 }
 
