@@ -19,9 +19,11 @@
     <script type="text/javascript" src="./static/js/jquery.js"></script>
     <script type="text/javascript" src="./static/js/manifest.bef584bd1c2d253bd161.js"></script>
     <script type="text/javascript" src="./static/js/vendor.00cc7075c0323908c353.js"></script>
-    <script type="text/javascript" src="./static/js/map.aa61c07ca6396268e8c8.js"></script>
-    <link rel="shortcut icon" href="/favicon.png">
+
+    <!-- <link rel="shortcut icon" href="/favicon.png"> -->
     <link href="./static/css/map.73aca2f0e963a3d95c95012c73b5c4d9.css" rel="stylesheet">
+
+
 
     <script src="./static/js/vue.js"></script>
 
@@ -407,25 +409,42 @@
                                 <option value="场外">场外</option>
                             </select>
                         </div>
-                        <div class="listTitle"><span class="index">序号</span> <span class="employeeName">姓名</span>
-                            <span class="team">所属班组</span> <span class="gender">工种</span></div>
-
-
+                        <div class="listTitle" style="font-size: 12px; display: flex;">
+                            <input class="custom-control-input" type="checkbox" id="checkbox" v-model="checked"
+                                @change="changeAllChecked()">
+                            <span class="index">序号</span>
+                            <span class="employeeName">姓名</span>
+                            <span class="team">所属班组</span>
+                            <span class="gender">工种</span></div>
                         <div class="userlist">
                             <div class="listTitle" v-for="(i,index) in emplist"
-                                style="font-size: 12px; text-align: center; display: flex; margin-top: 8px;"> <span
-                                    class="index">{{index+1}}</span> <span class="employeeName">{{i.name}}</span>
-                                <span class="team">{{i.teamname}}</span> <span class="gender">{{i.workname}}</span>
+                                style="font-size: 12px; text-align: center; display: flex; margin-top: 8px;">
+                                <!-- checkedbox -->
+                                <input class="custom-control-input" type="checkbox" v-model="i.value" :id="index+1">
+                                <span class="index">{{index+1}}</span>
+                                <span class="employeeName">{{i.name}}</span>
+                                <span class="team">{{i.teamname}}</span>
+                                <span class="gender">{{i.workname}}</span>
                             </div>
 
                         </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center export-pagination">
+
+                            </ul>
+                        </nav>
                     </div>
                     <button type="button" class="showAllButton ivu-btn ivu-btn-default ivu-btn-small"
-                        v-on:click="showpath">
+                        v-on:click="showposition" style="position: absolute; right: 100px;">
+                        <span>定位</span>
 
+                        <button type="button" class="showAllButton ivu-btn ivu-btn-default ivu-btn-small"
+                            v-on:click="showroute" style="position: absolute; right: 15px;">
+                            <span>完整轨迹</span>
+                        </button>
 
-                        <!---->
-                        <!----> <span>完整轨迹</span></button>
+                    </button>
+
                     <div class="showMore" style="display: none;"><span>更多</span> <i
                             class="type-more-icon ivu-icon ivu-icon-ios-arrow-down"></i></div>
                 </div>
@@ -502,132 +521,24 @@
                                     </select></p>
                                 <div class="buttons"><button type="button" class="ivu-btn ivu-btn-default">
                                         <!---->
-                                        <!----> <span>发送语音</span></button></div>
-                            </div>
-                            <div class="map-playBack border-radius" style="display: none;">
-                                <p class="operation">
-                                <div class="playBackDate ivu-date-picker" style="width: 140px;">
-                                    <div class="ivu-date-picker-rel">
-                                        <div
-                                            class="ivu-input-wrapper ivu-input-wrapper-small ivu-input-type ivu-date-picker-editor">
-                                            <!---->
-                                            <div class="ivu-input-inner-container" style=""><span
-                                                    class="ivu-input-suffix"><i
-                                                        class="ivu-icon ivu-icon-ios-calendar-outline"></i></span> <i
-                                                    class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
-                                                <input autocomplete="off" spellcheck="false" type="text"
-                                                    placeholder="选择日期"
-                                                    class="ivu-input ivu-input-small ivu-input-with-suffix"></div>
-                                            <!---->
-                                        </div>
-                                    </div>
-                                    <div class="ivu-select-dropdown" id="app" style="display: none;">
-                                        <div>
-                                            <div class="ivu-picker-panel-body-wrapper">
-                                                <!---->
-                                                <div class="ivu-picker-panel-body">
-                                                    <div class="ivu-date-picker-header">
-                                                        <span
-                                                            class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double"><i
-                                                                class="ivu-icon ivu-icon-ios-arrow-back"></i></span>
-                                                        <span
-                                                            class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow"><i
-                                                                class="ivu-icon ivu-icon-ios-arrow-back"></i></span>
-                                                        <span><span class="ivu-date-picker-header-label">2020年</span>
-                                                            <span class="ivu-date-picker-header-label">9月</span></span>
-                                                        <span
-                                                            class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow-double"><i
-                                                                class="ivu-icon ivu-icon-ios-arrow-forward"></i></span>
-                                                        <span
-                                                            class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow"><i
-                                                                class="ivu-icon ivu-icon-ios-arrow-forward"></i></span>
-                                                    </div>
-                                                    <div class="ivu-picker-panel-content">
-                                                        <div class="ivu-date-picker-cells">
-                                                            <div class="ivu-date-picker-cells-header"><span>
-                                                                    日
-                                                                </span><span>
-                                                                    一
-                                                                </span><span>
-                                                                    二
-                                                                </span><span>
-                                                                    三
-                                                                </span><span>
-                                                                    四
-                                                                </span><span>
-                                                                    五
-                                                                </span><span>
-                                                                    六
-                                                                </span></div> <span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-prev-month"><em>30</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-prev-month"><em>31</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>1</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>2</em></span><span
-                                                                class="ivu-date-picker-cells-cell"><em>3</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-selected"><em>4</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>5</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>6</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>7</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>8</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>9</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>10</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>11</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>12</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>13</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>14</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>15</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-today ivu-date-picker-cells-focused"><em>16</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>17</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>18</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>19</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>20</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>21</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>22</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>23</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>24</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>25</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>26</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>27</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>28</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>29</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled"><em>30</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>1</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>2</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>3</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>4</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>5</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>6</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>7</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>8</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>9</em></span><span
-                                                                class="ivu-date-picker-cells-cell ivu-date-picker-cells-cell-disabled ivu-date-picker-cells-cell-next-month"><em>10</em></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ivu-picker-panel-content" style="display: none;">
-                                                        <!---->
-                                                    </div>
-                                                    <!---->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <!----> <span>发送语音</span></button>
                                 </div>
-                                <!-- <button type="button" class="showAllButton ivu-btn ivu-btn-default ivu-btn-small"
-                                    v-on:click="showpath">
+                            </div>
 
-
-
-                                <span>完整轨迹</span>
-                                </button> -->
-                                </p>
-                                <div class="speed">
+                            <nav class="map-playBack border-radius" style="position: absolute; top: 0px; z-index: 100; height: 100px;right: -100px;">
+                                <div class="form-group col-md-6" style="left:5px;position: absolute;top: 8px;">
+                                    <label for="dob" style="line-height: 2; color: white;">日期选择&nbsp;&nbsp;&nbsp;</label>
+                                    <input type="date" placeholder="Date of Birth" class="form-control" id="dob"
+                                        style="position: absolute; top: 0px;">
+                                </div>
+                                <!-- <div class="speed">
                                     <div title="减速" class="reduce"></div>
                                     <div size="mini" title="暂停" class="startlocus" style="display: none;"></div>
                                     <div size="mini" title="回放" class="stoplocus"></div>
                                     <div size="mini" title="加速" class="add"></div>
                                 </div>
-                                <div style="text-align: center; color: rgb(255, 255, 255); opacity: 0;">当前倍速：10</div>
-                            </div>
+                                <div style="text-align: center; color: rgb(255, 255, 255); opacity: 0;">当前倍速：10</div> -->
+                            </nav>
                         </div>
                         <!---->
                         <!---->
@@ -677,7 +588,7 @@
     </div>
 
 
-    <script type="text/javascript">
+    <script>
         var app = new Vue({
             el: '#electronicSandTable',
             data: {
@@ -685,17 +596,47 @@
                 group: '',
                 work: '',
                 state: '',
-                content: '',
                 // 从后端接收到的员工列表数据
-                emplist: [
-                ],
+                emplist: [],
                 yuanEmplist: [],
-
                 map: {},
                 lineArr: [],
                 marker: {},
-                passedPolyline: {}
-
+                oldmarkerList: [
+                    {
+                        name: '刘阳',
+                        lon: 120.63520638241431,
+                        lat: 31.435001399727474,
+                        team: '钢筋工班组'
+                    },
+                    {
+                        name: '谷ty',
+                        lon: 120.65520638241431,
+                        lat: 31.445001399727474,
+                        team: '混凝土工班组'
+                    },
+                    {
+                        name: '阿炳',
+                        lon: 120.64520638241431,
+                        lat: 31.455001399727474,
+                        team: '机组队码头'
+                    },
+                    {
+                        name: '孟凡',
+                        lon: 120.63520638241431,
+                        lat: 31.485001399727474,
+                        team: '钢筋共班组'
+                    }
+                ],
+                markerList: [],
+                // 轨迹颜色
+                color: [
+                    "#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00",
+                    "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707",
+                    "#651067", "#329262", "#5574a6", "#3b3eac"
+                ],
+                passedPolyline: {},
+                checked: false,
             },
             mounted() {
                 this.initMap();
@@ -729,49 +670,106 @@
                             name: '刘阳',
                             teamname: '钢筋工班组',
                             workname: '车工',
-                            statename: '场外'
+                            statename: '场外',
+                            value: false
                         },
                         {
                             name: '吴',
                             teamname: '木工班组',
                             workname: '焊工',
-                            statename: '场外'
+                            statename: '场外',
+                            value: false
                         },
                         {
                             name: '刘阳2',
                             teamname: '钢筋工班组',
                             workname: '监工',
-                            statename: '场内'
+                            statename: '场内',
+                            value: false
                         },
                         {
                             name: '刘阳3',
                             teamname: '混凝土工班组',
                             workname: '其他',
-                            statename: '场内'
+                            statename: '场内',
+                            value: false
                         },
                         {
                             name: '刘阳4',
                             teamname: '钢筋工班组',
                             workname: '小工',
-                            statename: '场外'
+                            statename: '场外',
+                            value: false
                         },
                         {
                             name: '刘阳5',
                             teamname: '木工班组',
                             workname: '技工',
-                            statename: '场内'
+                            statename: '场内',
+                            value: false
                         },
                         {
                             name: '刘阳6',
                             teamname: '混凝土工班组',
                             workname: '质量员',
-                            statename: '场外'
+                            statename: '场外',
+                            value: false
                         },
+                        {
+                            name: '刘阳6',
+                            teamname: '混凝土工班组',
+                            workname: '质量员',
+                            statename: '场外',
+                            value: false
+                        },
+                        {
+                            name: '刘阳6',
+                            teamname: '混凝土工班组',
+                            workname: '质量员',
+                            statename: '场外',
+                            value: false
+                        },
+                        {
+                            name: '刘阳6',
+                            teamname: '混凝土工班组',
+                            workname: '质量员',
+                            statename: '场外',
+                            value: false
+                        },
+                        {
+                            name: '刘阳6',
+                            teamname: '混凝土工班组',
+                            workname: '质量员',
+                            statename: '场外',
+                            value: false
+                        },
+                        {
+                            name: '刘阳6',
+                            teamname: '混凝土工班组',
+                            workname: '质量员',
+                            statename: '场外',
+                            value: false
+                        },
+                        {
+                            name: '刘阳6',
+                            teamname: '混凝土工班组',
+                            workname: '质量员',
+                            statename: '场外',
+                            value: false
+                        },
+                        {
+                            name: '刘阳6',
+                            teamname: '混凝土工班组',
+                            workname: '质量员',
+                            statename: '场外',
+                            value: false
+                        }
                     ]
 
                     // 1.将全局变量的值放入当前方法中
                     that.emplist = this.yuanEmplist;
                 },
+
                 // 2.对拿到的新值进行处理
                 handleChange1: function (e) {
                     this.emplist = [];
@@ -940,119 +938,224 @@
 
                 // },
 
-                getSelectData: function() {
+                getSelectData: function () {
+                    $.ajax({
+                        url: 'http://192.168.0.45:1000/zb/project/emergency',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {},
+                        success: function (data) {
+                            console.log(data);
+                            for (var i = 0; i < data.length - 1; i++) {
 
-                }
-                ,
+                                that.data1.push(data[i]);
+                            }
 
-                showpath: function () {
-                    content = this.container;
-                    alert('hello!')
-                    // this.marker.setLabel({
-                    //     offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
-                    //     content: '<div style="display: none"><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="张军">张军</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">钢筋工班组</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
-                    //     direction: 'right' //设置文本标注方位
-                    // });
-
-                    this.marker.setLabel(null);
-                    this.marker.moveAlong(this.lineArr, 25000)
-                    this.map.setFitView();
-
-
-                    var passedPolyline = new AMap.Polyline({
-                        map: this.map,
-                        // path: lineArr,
-                        strokeColor: "#AF5",  //线颜色
-                        // strokeOpacity: 1,     //线透明度
-                        strokeWeight: 6,      //线宽
-                        // strokeStyle: "solid"  //线样式
+                        },
+                        error: function () {
+                        }
                     });
-                    this.passedPolyline = passedPolyline;
-
-
-                    this.marker.on('moving', function (e) {
-                        passedPolyline.setPath(e.passedPath);
-                    });
-
-
-
                 },
+                // 全选和取消全选的方法
+                changeAllChecked: function () {
+                    var emplist = this.yuanEmplist
+                    if (this.checked) {
+                        emplist.forEach((item, index) => {
+                            item.value = true;
+                        });
+                    } else {
+                        emplist.forEach((item, index) => {
+                            item.value = false;
+                        });
+                    }
+                },
+                // 展示所有选中的人的轨迹
+                // showpath: function () {
+                //     var color = this.color
+                //     var lineArrAll = [
+                //         {
+                //             timestamp: 1,
+                //             name: 'liuyang',
+                //             lineArr: [
+                //                 [120.63520638241431, 31.425001399727474],
+                //                 [120.63520638241431, 31.445001399727474],
+                //                 [120.63520638241431, 31.455001399727474],
+                //                 [120.63520638241431, 31.465001399727474],
+                //                 [120.63520638241431, 31.475001399727474],
+                //                 [120.83520638241431, 31.485001399727474],
+                //                 [120.63520638241431, 31.495001399727474],
+                //                 [120.63520638241431, 31.505001399727474],
+                //                 [120.63520638241431, 31.515001399727474],
+                //                 [120.63520638241431, 31.525001399727474],
+                //                 [120.63520638241431, 31.535001399727474],
+                //                 [120.63520638241431, 31.545001399727474],
+                //             ]
+                //         },
+                //         {
+                //             timestamp: 1,
+                //             name: 'liuyang',
+                //             lineArr: [
+                //                 [120.63520638241431, 31.425001399727474],
+                //                 [120.63520638241431, 31.445001399727474],
+                //                 [120.63520638241431, 31.455001399727474],
+                //                 [120.63520638241431, 31.465001399727474],
+                //                 [120.63520638241431, 31.475001399727474],
+                //                 [120.83520638241431, 31.485001399727474],
+                //                 [120.63520638241431, 31.495001399727474],
+                //                 [120.63520638241431, 31.505001399727474],
+                //                 [120.63520638241431, 31.515001399727474],
+                //                 [120.63520638241431, 31.525001399727474],
+                //                 [120.63520638241431, 31.535001399727474],
+                //                 [120.63520638241431, 31.545001399727474],
+                //             ]
+                //         },
+                //         {
+                //             timestamp: 1,
+                //             name: 'liuyang',
+                //             lineArr: [
+                //                 [120.63520638241431, 31.425001399727474],
+                //                 [120.63520638241431, 31.445001399727474],
+                //                 [120.63520638241431, 31.455001399727474],
+                //                 [120.63520638241431, 31.465001399727474],
+                //                 [120.63520638241431, 31.475001399727474],
+                //                 [120.83520638241431, 31.485001399727474],
+                //                 [120.63520638241431, 31.495001399727474],
+                //                 [120.63520638241431, 31.505001399727474],
+                //                 [120.63520638241431, 31.515001399727474],
+                //                 [120.63520638241431, 31.525001399727474],
+                //                 [120.63520638241431, 31.535001399727474],
+                //                 [120.63520638241431, 31.545001399727474],
+                //             ]
+                //         },
+                //     ];
+
+                //     var marker = this.marker
+                //     // 实例化点标记
+                //      marker = new AMap.Marker({
+                //         icon: './static/images/map/markers/positionIcon.png',
+                //         position: [120.63520638241431, 31.425001399727474],
+                //         offset: new AMap.Pixel(0, 0)
+                //     });
+                //     marker.setMap(this.map);
+
+                //     设置文本
+                //     marker.setLabel({
+                //         offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
+                //         content: '<div><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="张军">张军</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">钢筋工班组</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
+                //         direction: 'right' //设置文本标注方位
+                //     });
+
+                //     alert('hello!')
+
+                //     // array.forEach(element => {
+
+                //     // });
+
+                //     // this.marker.setLabel({
+                //     //     offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
+                //     //     content: '<div style="display: none"><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="张军">张军</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">钢筋工班组</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
+                //     //     direction: 'right' //设置文本标注方位
+                //     // });
+
+
+                //     // this.marker.moveAlong(this.lineArr, 25000)
+                //     // this.map.setFitView();
+
+
+                //     // var passedPolyline = new AMap.Polyline({
+                //     //     map: this.map,
+                //     //     // path: lineArr,
+                //     //     strokeColor: "#AF5",  //线颜色
+                //     //     // strokeOpacity: 1,     //线透明度
+                //     //     strokeWeight: 6,      //线宽
+                //     //     // strokeStyle: "solid"  //线样式
+                //     // });
+                //     // this.passedPolyline = passedPolyline;
+
+
+                //     // this.marker.on('moving', function (e) {
+                //     //     passedPolyline.setPath(e.passedPath);
+                //     // });
+
+
+
+                // },
 
                 initMap() {
                     // 实例化地图,并设置中心点
-                    // var map = this.map
-                    // var marker = this.marker 
 
-                    //轨迹回放功能
-                    // 坐标点集合
-                    var lineArr = [
-                        [120.63520638241431, 31.425001399727474],
-                        [120.63520638241431, 31.445001399727474],
-                        [120.63520638241431, 31.455001399727474],
-                        [120.63520638241431, 31.465001399727474],
-                        [120.63520638241431, 31.475001399727474],
-                        [120.83520638241431, 31.485001399727474],
-                        [120.63520638241431, 31.495001399727474],
-                        [120.63520638241431, 31.505001399727474],
-                        [120.63520638241431, 31.515001399727474],
-                        [120.63520638241431, 31.525001399727474],
-                        [120.63520638241431, 31.535001399727474],
-                        [120.63520638241431, 31.545001399727474],
-                    ]
-                    this.lineArr = lineArr;
                     var map = new AMap.Map("container", {
                         resizeEnable: true,
                         center: [120.63520638241431, 31.425001399727474],
                         zoom: 14
                     })
-                    this.map = map;
+                    this.map = map
+                    //轨迹回放功能
+                    // 坐标点集合
+                    // var lineArr = [
+                    //     [120.63520638241431, 31.425001399727474],
+                    //     [120.63520638241431, 31.445001399727474],
+                    //     [120.63520638241431, 31.455001399727474],
+                    //     [120.63520638241431, 31.465001399727474],
+                    //     [120.63520638241431, 31.475001399727474],
+                    //     [120.83520638241431, 31.485001399727474],
+                    //     [120.63520638241431, 31.495001399727474],
+                    //     [120.63520638241431, 31.505001399727474],
+                    //     [120.63520638241431, 31.515001399727474],
+                    //     [120.63520638241431, 31.525001399727474],
+                    //     [120.63520638241431, 31.535001399727474],
+                    //     [120.63520638241431, 31.545001399727474],
+                    // ]
+                    // this.lineArr = lineArr;
+
+
 
 
                     // 实例化点标记
-                    var marker = new AMap.Marker({
-                        icon: './static/images/map/markers/positionIcon.png',
-                        position: [120.63520638241431, 31.425001399727474],
-                        offset: new AMap.Pixel(0, 0)
-                    });
-                    this.marker = marker;
-                    marker.setMap(map);
+                    // var marker = new AMap.Marker({
+                    //     icon: './static/images/map/markers/positionIcon.png',
+                    //     position: [120.63520638241431, 31.425001399727474],
+                    //     offset: new AMap.Pixel(0, 0)
+                    // });
+                    // this.marker = marker;
+                    // marker.setMap(map);
 
                     // 设置文本
-                    var content = this.content;
-                    marker.setLabel({
-                        offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
-                        content: '<div><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="张军">张军</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">钢筋工班组</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
-                        direction: 'right' //设置文本标注方位
-                    });
-         
+                    // var content = this.content;
+                    // marker.setLabel({
+                    //     offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
+                    //     content: '<div><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="张军">张军</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">钢筋工班组</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
+                    //     direction: 'right' //设置文本标注方位
+                    // });
 
 
-                    var markerList = [
-                        {
-                            name: '刘阳',
-                            lon: 120.63520638241431,
-                            lat: 31.435001399727474,
-                            team: '钢筋工班组'
-                        },
-                        {
-                            name: '谷ty',
-                            lon: 120.65520638241431,
-                            lat: 31.445001399727474,
-                            team: '混凝土工班组'
-                        },
-                        {
-                            name: '阿炳',
-                            lon: 120.64520638241431,
-                            lat: 31.455001399727474,
-                            team: '机组队码头'
-                        },
-                        {
-                            name: '孟凡',
-                            lon: 120.63520638241431,
-                            lat: 31.485001399727474,
-                            team: '钢筋共班组'
-                        }
-                    ]
+
+                    // var markerList = [
+                    //     {
+                    //         name: '刘阳',
+                    //         lon: 120.63520638241431,
+                    //         lat: 31.435001399727474,
+                    //         team: '钢筋工班组'
+                    //     },
+                    //     {
+                    //         name: '谷ty',
+                    //         lon: 120.65520638241431,
+                    //         lat: 31.445001399727474,
+                    //         team: '混凝土工班组'
+                    //     },
+                    //     {
+                    //         name: '阿炳',
+                    //         lon: 120.64520638241431,
+                    //         lat: 31.455001399727474,
+                    //         team: '机组队码头'
+                    //     },
+                    //     {
+                    //         name: '孟凡',
+                    //         lon: 120.63520638241431,
+                    //         lat: 31.485001399727474,
+                    //         team: '钢筋共班组'
+                    //     }
+                    // ]
 
 
 
@@ -1072,46 +1175,73 @@
                     // });
 
                     // 多个员工定位
-                    markerList.forEach(element => {
+                    // markerList.forEach(element => {
+                    //     marker = new AMap.Marker({
+                    //         icon: './static/images/map/markers/positionIcon.png',
+                    //         position: [element.lon, element.lat],
+                    //         offset: new AMap.Pixel(0, 0)
+                    //     });
+                    //     marker.setMap(map);
+                    //     marker.setLabel({
+                    //         offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
+                    //         content: '<div><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="' + element.name + '">' + element.name + '</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">' + element.team + '</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
+                    //         direction: 'right' //设置文本标注方位   
+                    //     });
+
+                    // });
+
+                    // marker = new AMap.Marker({
+                    //     map: map,
+                    //     position: [120.63520638241431, 31.435001399727474],
+                    //     icon: "./images/employee_head_man.png",
+                    //     offset: new AMap.Pixel(0, 0),
+                    //     autoRotation: true,
+                    //     // angle: -90,
+                    // });
+
+
+
+
+                },
+                showposition: function () {
+                    var marker = this.marker
+                    var markerList = this.oldmarkerList
+
+                    markerList.forEach((item, index) => {
+                        // 实例化点标记
                         marker = new AMap.Marker({
                             icon: './static/images/map/markers/positionIcon.png',
-                            position: [element.lon, element.lat],
+                            position: [item.lon, item.lat],
                             offset: new AMap.Pixel(0, 0)
                         });
-                        marker.setMap(map);
+
+                        
                         marker.setLabel({
                             offset: new AMap.Pixel(-20, -40),  //设置文本标注偏移量
-                            content: '<div><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="' + element.name + '">' + element.name + '</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">' + element.team + '</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
+                            content: '<div><div id="employeeInfowindow" ><div class="employeeInfowindowBox" style="display:flex; align-items: center;"><img src="./项目地图_files/employee_head_man.png " style="height: 40px; width:40px"><div style="padding-right:0"><div class="top"><span class="name" title="' + item.name + '">' + item.name + '</span><span>00:00:00</span></div><div class="bottom"><span class="teamName">' + item.team + '</span><span style="color:#f00;margin-right:10px"></span></div><div style="display:none" class="batteryClass "></div></div></div></div></div>',
                             direction: 'right' //设置文本标注方位   
                         });
-
+                        marker.setMap(this.map);
                     });
 
 
+                },
+                showroute: function () {
+                    console.log('hello');
+                    marker = null
+                    this.markerList = null
+                    var lineArrAll = this.lineArrAll;
+                    // 实例化点标记
 
-
-
-                    marker = new AMap.Marker({
-                        map: map,
-                        position: [120.63520638241431, 31.435001399727474],
-                        icon: "./images/employee_head_man.png",
-                        offset: new AMap.Pixel(0, 0),
-                        autoRotation: true,
-                        // angle: -90,
-                    });
-
-
-
-
-
-                    
-
-                }
+                },
 
 
 
 
-            }
+
+
+            },
+
         })
 
     </script>
